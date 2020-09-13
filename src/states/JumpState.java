@@ -1,11 +1,11 @@
 package states;
 
-import player.Player;
+import hero.Hero;
 
 public class JumpState extends PlayerState {
 
 	
-	public JumpState(Player player) {
+	public JumpState(Hero player) {
 		super(player);
 		this.name = "Jump State";
 	}
@@ -17,7 +17,7 @@ public class JumpState extends PlayerState {
 	
 	@Override
 	public void initialize() {
-		this.player.setY(1);
+		this.player.setySpeed(1);
 	}
 
 	@Override

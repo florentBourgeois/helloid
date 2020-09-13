@@ -1,31 +1,32 @@
-package player;
+package hero;
 
 import base.DomainObject;
+import states.IdleState;
 import states.PlayerState;
 
-public class Player extends DomainObject{
+public class Hero extends DomainObject implements HeroActions{
 	private int x = 50;
 	private int y = 50;
 	private int xSpeed = 0;
 	private int ySpeed = 0;
 	
-	private PlayerState state = new IddleState(this);
+	private PlayerState state = new IdleState(this);
 	
 	
-	public Player() {
+	public Hero() {
 		this.name = "default Player";
 		this.initialize();
 	}
 
 	
-	public Player(String name) {
+	public Hero(String name) {
 		this.name = name;
 		this.initialize();
 	}
 
 	
 	public void initialize() {
-		this.state = new IddleState(this);
+		this.state = new IdleState(this);
 	}
 	
 	public PlayerState getState() {
@@ -75,6 +76,39 @@ public class Player extends DomainObject{
 		this.ySpeed = ySpeed;
 	}
 
+	@Override
+	public void jump() {
+		this.state.jump();
+		this.print();
+	}
+
+
+	@Override
+	public void touchGround() {
+		this.state.touchGround();
+		this.print();
+	}
+
+
+	@Override
+	public void goRight() {
+		this.state.goRight();
+		this.print();
+	}
+
+
+	@Override
+	public void goLeft() {
+		this.state.goLeft();
+		this.print();
+	}
+
+
+	@Override
+	public void releaseDirection() {
+		this.state.releaseDirection();
+		this.print();
+	}
 	
 
 	@Override
@@ -84,9 +118,9 @@ public class Player extends DomainObject{
 			.append("\n\ty : ").append(this.y)
 			.append("\n\tx speed : ").append(this.xSpeed)
 			.append("\n\tyspeed : ").append(this.ySpeed)
-			.append("current State : ").append(this.state);
+			.append("\n\tcurrent State : ").append(this.state);
 		return sb.toString();
 	}
-	
 
+	
 }

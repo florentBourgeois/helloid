@@ -1,13 +1,14 @@
 package states;
 
 import base.DomainObject;
-import player.Player;
+import hero.Hero;
+import hero.HeroActions;
 
-public abstract class PlayerState extends DomainObject{
+public abstract class PlayerState extends DomainObject implements HeroActions{
 	
-	protected Player player;
+	protected Hero player;
 	
-	public PlayerState(Player player) {
+	public PlayerState(Hero player) {
 		this.player = player;
 		this.name = "State";
 		this.initialize();
@@ -19,11 +20,11 @@ public abstract class PlayerState extends DomainObject{
 		this.initialize();
 	}
 	
-	public void setPlayer(Player player) {
+	public void setPlayer(Hero player) {
 		this.player = player;
 	}
 	
-	public Player getPlayer() {
+	public Hero getPlayer() {
 		return player;
 	}
 	
@@ -31,12 +32,6 @@ public abstract class PlayerState extends DomainObject{
 	public String toString() {
 		return super.toString();
 	}
-	
-	public abstract void initialize();
-	public abstract void jump();
-	public abstract void touchGround();
-	public abstract void goRight();
-	public abstract void goLeft();
-	public abstract void releaseDirection();
+
 	
 }

@@ -2,28 +2,26 @@ package states;
 
 import hero.Hero;
 
-public class IdleState extends PlayerState {
+public class WalkRightState extends PlayerState {
 
-	
-	public IdleState(Hero player) {
+	public WalkRightState(Hero player) {
 		super(player);
-		this.name = "Idle State";
+		this.name = "Walk right State";	}
+	
+	public WalkRightState(PlayerState previousState) {
+		super(previousState);
+		this.name = "Walk right State";
 	}
 	
-	public IdleState(PlayerState previousState) {
-		super(previousState);
-		this.name = "Idle State";
-	}
-
 	@Override
 	public void initialize() {
-		this.player.setxSpeed(0);
-		this.player.setySpeed(0);
+		this.player.setxSpeed(1);
 	}
-	
+
 	@Override
 	public void jump() {
-		this.player.setState(new JumpState(this));
+		// shall be in another state thread (jump and directions are cumulative)
+
 	}
 
 	@Override
@@ -33,7 +31,7 @@ public class IdleState extends PlayerState {
 
 	@Override
 	public void goRight() {
-		this.player.setState(new WalkRightState(this));
+		this.player.setState(new RunRightState(this));
 	}
 
 	@Override
@@ -43,10 +41,8 @@ public class IdleState extends PlayerState {
 
 	@Override
 	public void releaseDirection() {
-		// already done
+		this.player.setState(new IdleState(this));
 
 	}
-
-
 
 }
